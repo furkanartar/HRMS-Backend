@@ -23,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Nullable
-    @JsonIgnore
+    //@JsonIgnore
     private int id;
 
     @Column(name = "email")
@@ -32,17 +32,17 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Nullable
     @Column(name = "created_at")
     private LocalDate createdAt = LocalDate.now();
 
-    @JsonIgnore
+    //@JsonIgnore
     @Nullable
     @Column(name = "email_authentication_status")
     private boolean emailAuthenticationStatus = false;
 
-    @JsonIgnore
+    //@JsonIgnore
     @Nullable
     @Column(name = "active")
     private boolean active;

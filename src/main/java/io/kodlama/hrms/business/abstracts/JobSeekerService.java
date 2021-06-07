@@ -9,4 +9,6 @@ import java.util.List;
 public interface JobSeekerService {
     List<JobSeeker> getAll();
     boolean add(JobSeeker jobSeeker);
+    List<JobSeeker> findByEmail(String email);
+    List<JobSeeker> findByNationalIdentity(String nationalIdentity);
 }

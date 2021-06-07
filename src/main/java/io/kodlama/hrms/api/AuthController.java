@@ -19,13 +19,11 @@ public class AuthController {
 
     @PostMapping("/registerEmployer")
     public boolean registerEmployer(@RequestBody Employer employer, String confirmPassword) {
-        System.out.println(employer + " " + confirmPassword);
         return this.authService.registerEmployer(employer, confirmPassword);
     }
 
     @PostMapping("/registerJobSeeker")
     public boolean registerJobSeeker(@RequestBody JobSeeker jobSeeker, String confirmPassword) {
-        System.out.println(jobSeeker + " " + confirmPassword);
         return this.authService.registerJobSeeker (jobSeeker, confirmPassword);
     }
 }

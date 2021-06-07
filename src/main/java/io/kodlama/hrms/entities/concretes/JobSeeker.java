@@ -21,7 +21,7 @@ public class JobSeeker extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonIgnore
+    //@JsonIgnore
     private int id;
 
     @Column(name = "first_name")
@@ -35,4 +35,14 @@ public class JobSeeker extends User {
 
     @Column(name = "birth_date")
     private LocalDate birthDate;
+
+
+    public JobSeeker(int id, String email, String password, LocalDate createdAt, boolean emailAuthenticationStatus, boolean active, int id1, String firstName, String lastName, String nationalIdentity, LocalDate birthDate) {
+        super(id, email, password, createdAt, emailAuthenticationStatus, active);
+        this.id = id1;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nationalIdentity = nationalIdentity;
+        this.birthDate = birthDate;
+    }
 }
