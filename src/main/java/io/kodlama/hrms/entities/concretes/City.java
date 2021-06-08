@@ -1,14 +1,13 @@
 package io.kodlama.hrms.entities.concretes;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "cityies")
 @PrimaryKeyJoinColumn(name = "city_id", referencedColumnName = "id")

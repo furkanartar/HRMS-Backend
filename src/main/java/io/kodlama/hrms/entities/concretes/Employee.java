@@ -1,28 +1,26 @@
 package io.kodlama.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data
-@Entity
-@Table(name = "employees")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Entity
+@Table(name = "employees")
 @EqualsAndHashCode(callSuper=false)
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class Employee extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @JsonIgnore
-    private int id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id")
+//    @JsonIgnore
+//    private int id;
 
     @Column(name = "first_name")
     private String firstName;

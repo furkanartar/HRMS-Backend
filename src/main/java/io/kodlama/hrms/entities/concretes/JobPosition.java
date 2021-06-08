@@ -1,16 +1,15 @@
 package io.kodlama.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "job_positions")
 @PrimaryKeyJoinColumn(name = "jobposition_id", referencedColumnName = "id")
