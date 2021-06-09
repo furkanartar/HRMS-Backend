@@ -1,0 +1,8 @@
+package io.kodlama.hrms.dataAccess.abstracts;
+
+import io.kodlama.hrms.entities.concretes.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LanguageDao extends JpaRepository<Language, Integer> {
+}
+

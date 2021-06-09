@@ -1,7 +1,7 @@
 //package io.kodlama.hrms.api;
 //
 //import io.kodlama.hrms.business.abstracts.UserService;
-//import io.kodlama.hrms.entities.concretes.User;
+//import io.kodlama.hrms.core.utilities.entities.User;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.*;
 //

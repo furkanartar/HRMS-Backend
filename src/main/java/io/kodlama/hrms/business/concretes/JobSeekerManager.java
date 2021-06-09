@@ -1,9 +1,11 @@
 package io.kodlama.hrms.business.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.kodlama.hrms.business.abstracts.JobSeekerService;
 import io.kodlama.hrms.core.utilities.adapter.MernisService;
 import io.kodlama.hrms.dataAccess.abstracts.JobSeekerDao;
 import io.kodlama.hrms.entities.concretes.JobSeeker;
+import io.kodlama.hrms.entities.dtos.ResumeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,6 +61,24 @@ public class JobSeekerManager implements JobSeekerService {
     @Override
     public List<JobSeeker> findByNationalIdentity(String nationalIdentity) {
         return this.jobSeekerDao.findByNationalIdentity(nationalIdentity);
+    }
+
+    @Override
+    public JobSeeker getById(int id) {
+        return this.jobSeekerDao.getById(id);
+    }
+
+    @Override
+    public ResumeDto getJobSeekerResumeById(int id) {
+        ResumeDto resumeDto = new ResumeDto();
+        JobSeeker jobSeeker = this.jobSeekerDao.getById(id);
+        resumeDto.setExperience(jobSeeker.getExperiences());
+        resumeDto.setImages(jobSeeker.getImages());
+        resumeDto.setLanguages(jobSeeker.getLanguages());
+        resumeDto.setSkills(jobSeeker.getSkills());
+        resumeDto.setSchoolInformations(jobSeeker.getSchoolInformations());
+        resumeDto.setSocialMedias(jobSeeker.getSocialMedias());
+        return resumeDto;
     }
 
 

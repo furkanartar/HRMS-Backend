@@ -8,4 +8,5 @@ import java.util.List;
 public interface JobSeekerDao extends JpaRepository<JobSeeker, Integer> {
     List<JobSeeker> findByEmail(String email);
     List<JobSeeker> findByNationalIdentity(String nationalIdentity);
+    JobSeeker getById(int id);
 }

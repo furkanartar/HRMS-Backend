@@ -1,8 +1,7 @@
 package io.kodlama.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.kodlama.hrms.core.utilities.entities.User;
 import lombok.*;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 

@@ -1,8 +1,8 @@
 package io.kodlama.hrms.business.concretes;
 
 import io.kodlama.hrms.business.abstracts.UserService;
-import io.kodlama.hrms.dataAccess.abstracts.UserDao;
-import io.kodlama.hrms.entities.concretes.User;
+import io.kodlama.hrms.core.utilities.dataAccess.UserDao;
+import io.kodlama.hrms.core.utilities.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

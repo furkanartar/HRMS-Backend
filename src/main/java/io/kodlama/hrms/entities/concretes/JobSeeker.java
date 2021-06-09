@@ -1,10 +1,12 @@
 package io.kodlama.hrms.entities.concretes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.kodlama.hrms.core.utilities.entities.User;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,14 +14,12 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "job_seeker")
-@EqualsAndHashCode(callSuper=false)
 @PrimaryKeyJoinColumn(name = "user_id", referencedColumnName = "id")
 public class JobSeeker extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @JsonIgnore
     private int id;
 
     @Column(name = "first_name")
@@ -34,13 +34,31 @@ public class JobSeeker extends User {
     @Column(name = "birth_date")
     private LocalDate birthDate;
 
-//hata olursa alttaki satırı aç
-//    public JobSeeker(int id, String email, String password, LocalDate createdAt, boolean emailAuthenticationStatus, boolean active, int id1, String firstName, String lastName, String nationalIdentity, LocalDate birthDate) {
-//        super(id, email, password, createdAt, emailAuthenticationStatus, active);
-//        this.id = id1;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.nationalIdentity = nationalIdentity;
-//        this.birthDate = birthDate;
-//    }
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Experience> experiences;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Image> images;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<SchoolInformation> schoolInformations;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Image> photos;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Skill> skills;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Language> languages;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<SocialMedia> socialMedias;
 }

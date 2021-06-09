@@ -1,5 +1,6 @@
 package io.kodlama.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -22,4 +23,8 @@ public class JobPosition {
 
     @Column(name = "name")
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "jobPosition")
+    private List<Experience> experience;
 }
