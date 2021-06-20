@@ -1,6 +1,8 @@
 package io.kodlama.hrms.business.concretes;
 
 import io.kodlama.hrms.business.abstracts.WayOfWorkingService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.SuccessDataResult;
 import io.kodlama.hrms.dataAccess.abstracts.WayOfWorkingDao;
 import io.kodlama.hrms.entities.concretes.WayOfWorking;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class WayOfWorkingManager implements WayOfWorkingService {
     }
 
     @Override
-    public List<WayOfWorking> getAll() {
-        return this.wayOfWorkingDao.findAll();
+    public DataResult<List<WayOfWorking>> getAll() {
+        return new SuccessDataResult<List<WayOfWorking>>(this.wayOfWorkingDao.findAll(), "Çalışma şekilleri getirildi.");
     }
 }

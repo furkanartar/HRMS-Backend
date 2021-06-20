@@ -3,6 +3,8 @@ package io.kodlama.hrms.business.concretes;
 import io.kodlama.hrms.business.abstracts.UserService;
 import io.kodlama.hrms.core.utilities.dataAccess.UserDao;
 import io.kodlama.hrms.core.utilities.entities.User;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.SuccessDataResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,12 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public List<User> getAll() {
-        return this.userDao.findAll();
+    public DataResult<List<User>> getAll() {
+        return new SuccessDataResult<List<User>>(this.userDao.findAll(), "Kullanıcılar başarıyla getirildi");
     }
 
     @Override
-    public User getByEmail(String email) {
-        return userDao.findByEmail(email);
+    public DataResult<User> getByEmail(String email) {
+        return new SuccessDataResult<User>(userDao.findByEmail(email), "Kullanıcılar başarıyla getirildi");
     }
 }

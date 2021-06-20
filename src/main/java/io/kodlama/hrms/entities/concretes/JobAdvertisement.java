@@ -40,10 +40,10 @@ public class JobAdvertisement {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "minimum_salary")
+    @Column(name = "minimum_salary", nullable = true)
     private double minimumSalary;
 
-    @Column(name = "maximum_salary")
+    @Column(name = "maximum_salary", nullable = true)
     private double maximumSalary;
 
     @Column(name = "number_of_people_to_be_hired")
@@ -65,5 +65,5 @@ public class JobAdvertisement {
     private boolean remote = false;
 
     @Column(name = "hrms_auth")
-    private boolean hrms_auth = false;
+    private boolean hrmsAuth = false;
 }

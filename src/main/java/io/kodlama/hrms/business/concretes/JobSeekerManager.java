@@ -1,8 +1,11 @@
 package io.kodlama.hrms.business.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.kodlama.hrms.business.abstracts.JobSeekerService;
 import io.kodlama.hrms.core.utilities.adapter.MernisService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
+import io.kodlama.hrms.core.utilities.results.SuccessDataResult;
+import io.kodlama.hrms.core.utilities.results.SuccessResult;
 import io.kodlama.hrms.dataAccess.abstracts.JobSeekerDao;
 import io.kodlama.hrms.entities.concretes.JobSeeker;
 import io.kodlama.hrms.entities.dtos.ResumeDto;
@@ -24,52 +27,48 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public List<JobSeeker> getAll() {
-        return this.jobSeekerDao.findAll();
+    public DataResult<List<JobSeeker>> getAll() {
+        return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(), "İş arayan bilgileri getirildi.");
     }
 
     @Override
-    public boolean add(JobSeeker jobSeeker) {
+    public Result add(JobSeeker jobSeeker) {
         if (!mernisService.checkIfRealPerson(jobSeeker))
         {
-            System.out.println("Lütfen bilgilerinizi kontrol ediniz.");
-            return false;
+            return new SuccessResult("Lütfen bilgilerinizi kontrol ediniz.");
         }
 
-        if (findByEmail(jobSeeker.getEmail()).size() >= 1)
+        if (findByEmail(jobSeeker.getEmail()).getData().size() >= 1)
         {
-            System.out.println("Email zaten kullanılıyor.");
-            return false;
+            return new SuccessResult("Email zaten kullanılıyor.");
         }
 
-        if (findByEmail(jobSeeker.getNationalIdentity()).size() >= 1)
+        if (findByEmail(jobSeeker.getNationalIdentity()).getData().size() >= 1)
         {
-            System.out.println("TC zaten kullanılıyor.");
-            return false;
+            return new SuccessResult("Kimlik numarası zaten kullanılıyor.");
         }
-
 
         this.jobSeekerDao.save(jobSeeker);
-        return true;
+        return new SuccessResult("Kaydınız başarıyla gerçekleştirildi..");
     }
 
     @Override
-    public List<JobSeeker> findByEmail(String email) {
-        return this.jobSeekerDao.findByEmail(email);
+    public DataResult<List<JobSeeker>> findByEmail(String email) {
+        return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findByEmail(email), "Email adresine göre getirildi.");
     }
 
     @Override
-    public List<JobSeeker> findByNationalIdentity(String nationalIdentity) {
-        return this.jobSeekerDao.findByNationalIdentity(nationalIdentity);
+    public DataResult<List<JobSeeker>> findByNationalIdentity(String nationalIdentity) {
+        return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findByNationalIdentity(nationalIdentity), "Kimlik bilgisine göre getirildi.");
     }
 
     @Override
-    public JobSeeker getById(int id) {
-        return this.jobSeekerDao.getById(id);
+    public DataResult<JobSeeker> getById(int id) {
+        return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.getById(id), "İd'ye göre listelendi.");
     }
 
     @Override
-    public ResumeDto getJobSeekerResumeById(int id) {
+    public SuccessDataResult<ResumeDto> getJobSeekerResumeById(int id) {
         ResumeDto resumeDto = new ResumeDto();
         JobSeeker jobSeeker = this.jobSeekerDao.getById(id);
         resumeDto.setExperience(jobSeeker.getExperiences());
@@ -78,8 +77,6 @@ public class JobSeekerManager implements JobSeekerService {
         resumeDto.setSkills(jobSeeker.getSkills());
         resumeDto.setSchoolInformations(jobSeeker.getSchoolInformations());
         resumeDto.setSocialMedias(jobSeeker.getSocialMedias());
-        return resumeDto;
+        return new SuccessDataResult<ResumeDto>(resumeDto, "CV getirildi.");
     }
-
-
 }

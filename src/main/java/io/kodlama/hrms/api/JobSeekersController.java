@@ -1,6 +1,7 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.JobSeekerService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
 import io.kodlama.hrms.entities.concretes.JobSeeker;
 import io.kodlama.hrms.entities.dtos.ResumeDto;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,12 +24,12 @@ public class JobSeekersController {
     }
 
     @GetMapping("/getall")
-    public List<JobSeeker> getAll(){
+    public DataResult<List<JobSeeker>> getAll(){
         return this.jobSeekerService.getAll();
     }
 
     @GetMapping("/getJobSeekerResumeById")
-    public ResumeDto getJobSeekerResumeById(int id){
+    public DataResult<ResumeDto> getJobSeekerResumeById(int id){
         return this.jobSeekerService.getJobSeekerResumeById(id);
     }
 }

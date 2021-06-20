@@ -1,6 +1,8 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.SocialMediaService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
 import io.kodlama.hrms.entities.concretes.SocialMedia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +21,12 @@ public class SocialMediasController {
     }
 
     @PostMapping("/getAll")
-    public List<SocialMedia> getAll() {
+    public DataResult<List<SocialMedia>> getAll() {
         return this.socialMediaService.getAll();
     }
 
     @PostMapping("/add")
-    public boolean add(@RequestBody SocialMedia socialMedia) {
+    public Result add(@RequestBody SocialMedia socialMedia) {
         return this.socialMediaService.add(socialMedia);
     }
 }

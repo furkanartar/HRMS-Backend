@@ -3,6 +3,9 @@ package io.kodlama.hrms.business.concretes;
 import io.kodlama.hrms.business.abstracts.AuthService;
 import io.kodlama.hrms.business.abstracts.EmployerService;
 import io.kodlama.hrms.business.abstracts.JobSeekerService;
+import io.kodlama.hrms.core.utilities.results.ErrorResult;
+import io.kodlama.hrms.core.utilities.results.Result;
+import io.kodlama.hrms.core.utilities.results.SuccessResult;
 import io.kodlama.hrms.entities.concretes.Employer;
 import io.kodlama.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +25,24 @@ public class AuthManager implements AuthService {
     }
 
     @Override
-    public boolean registerEmployer(Employer employer, String confirmPassword) {
-        return this.employerService.add(employer);
+    public Result registerEmployer(Employer employer, String confirmPassword) {
+        var result = this.employerService.add(employer);
+        if (result.isSuccess())
+        {
+            return new SuccessResult("Kayıt başarıyla gerçekleştirildi.");
+        }
+
+        return new ErrorResult("Kayıt başarısız");
     }
 
     @Override
-    public boolean registerJobSeeker(JobSeeker jobSeeker, String confirmPassword) {
-        return this.jobSeekerService.add(jobSeeker);
+    public Result registerJobSeeker(JobSeeker jobSeeker, String confirmPassword) {
+        var result= this.jobSeekerService.add(jobSeeker);
+        if (result.isSuccess())
+        {
+            return new SuccessResult("Kayıt başarıyla gerçekleştirildi.");
+        }
+
+        return new ErrorResult("Kayıt başarısız");
     }
 }

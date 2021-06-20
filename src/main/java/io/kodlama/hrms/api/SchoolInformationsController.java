@@ -1,6 +1,8 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.SchoolInformationService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
 import io.kodlama.hrms.entities.concretes.SchoolInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +21,12 @@ public class SchoolInformationsController {
     }
 
     @PostMapping("/getAll")
-    public List<SchoolInformation> getAll() {
+    public DataResult<List<SchoolInformation>> getAll() {
         return this.schoolInformationService.getAll();
     }
 
     @PostMapping("/add")
-    public boolean add(@RequestBody SchoolInformation schoolInformation) {
+    public Result add(@RequestBody SchoolInformation schoolInformation) {
         return this.schoolInformationService.add(schoolInformation);
     }
 }

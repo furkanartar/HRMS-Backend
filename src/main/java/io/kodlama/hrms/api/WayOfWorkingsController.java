@@ -1,6 +1,7 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.WayOfWorkingService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
 import io.kodlama.hrms.entities.concretes.Employer;
 import io.kodlama.hrms.entities.concretes.WayOfWorking;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class WayOfWorkingsController {
     }
 
     @GetMapping("/getAll")
-    public List<WayOfWorking> getAll() {
+    public DataResult<List<WayOfWorking>> getAll() {
         return this.wayOfWorkingService.getAll();
     }
 }

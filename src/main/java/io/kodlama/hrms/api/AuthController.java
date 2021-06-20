@@ -1,6 +1,7 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.AuthService;
+import io.kodlama.hrms.core.utilities.results.Result;
 import io.kodlama.hrms.entities.concretes.Employer;
 import io.kodlama.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,12 @@ public class AuthController {
     }
 
     @PostMapping("/registerEmployer")
-    public boolean registerEmployer(@RequestBody Employer employer, String confirmPassword) {
+    public Result registerEmployer(@RequestBody Employer employer, String confirmPassword) {
         return this.authService.registerEmployer(employer, confirmPassword);
     }
 
     @PostMapping("/registerJobSeeker")
-    public boolean registerJobSeeker(@RequestBody JobSeeker jobSeeker, String confirmPassword) {
+    public Result registerJobSeeker(@RequestBody JobSeeker jobSeeker, String confirmPassword) {
         return this.authService.registerJobSeeker (jobSeeker, confirmPassword);
     }
 }

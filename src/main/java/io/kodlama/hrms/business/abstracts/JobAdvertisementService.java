@@ -1,20 +1,20 @@
 package io.kodlama.hrms.business.abstracts;
 
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
 import io.kodlama.hrms.entities.concretes.JobAdvertisement;
-import io.kodlama.hrms.entities.dtos.ActiveJobAdvertisementsByCompanyDto;
-import io.kodlama.hrms.entities.dtos.ActiveJobAdvertisementsDto;
-import io.kodlama.hrms.entities.dtos.ActiveJobAdvertisementsOrderByCreatedAt;
+import io.kodlama.hrms.entities.dtos.JobAdvertisementsDto;
 
 import java.util.List;
 
 public interface JobAdvertisementService {
-    List<JobAdvertisement> getAll();
-    boolean add(JobAdvertisement jobAdvertisement);
+    DataResult<List<JobAdvertisement>>  getAll();
+    Result add(JobAdvertisement jobAdvertisement);
 
-    List<ActiveJobAdvertisementsDto> getAllByActive();
-    List<ActiveJobAdvertisementsOrderByCreatedAt> getAllByActiveAndOrderByCreatedAt();
-    List<ActiveJobAdvertisementsByCompanyDto> getAllByActiveAndEmployerId(int id);
-    List<JobAdvertisement> findAllByJobPositionId(int id);
+    DataResult<List<JobAdvertisementsDto>>  getAllByActive();
+    DataResult<List<JobAdvertisementsDto>>  getAllByActiveAndOrderByCreatedAt();
+    DataResult<List<JobAdvertisementsDto>>  getAllByActiveAndEmployerId(int id);
+    DataResult<List<JobAdvertisementsDto>>  getAllByJobPositionId(int id);
 
-    boolean closeJobAdvertisment(int jobAdvertismentId);
+    Result closeJobAdvertisment(int jobAdvertismentId);
 }

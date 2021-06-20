@@ -1,6 +1,7 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.EmployerService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
 import io.kodlama.hrms.entities.concretes.Employer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class EmployersController {
     }
 
     @GetMapping({"/getall"})
-    public List<Employer> getAll() {
+    public DataResult<List<Employer>> getAll() {
         return this.employerService.getAll();
     }
 }

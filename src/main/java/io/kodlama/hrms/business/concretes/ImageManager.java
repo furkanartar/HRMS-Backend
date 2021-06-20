@@ -2,6 +2,10 @@ package io.kodlama.hrms.business.concretes;
 
 import io.kodlama.hrms.business.abstracts.ImageService;
 import io.kodlama.hrms.core.utilities.adapter.abstracts.ImageUploadService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
+import io.kodlama.hrms.core.utilities.results.SuccessDataResult;
+import io.kodlama.hrms.core.utilities.results.SuccessResult;
 import io.kodlama.hrms.dataAccess.abstracts.ImageDao;
 import io.kodlama.hrms.entities.concretes.Image;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +27,12 @@ public class ImageManager implements ImageService {
     }
 
     @Override
-    public List<Image> getAll() {
-        return this.imageDao.findAll();
+    public DataResult<List<Image>> getAll() {
+        return new SuccessDataResult<List<Image>>(this.imageDao.findAll(), "Fotoğraflar listelendi.");
     }
 
     @Override
-    public boolean add(Image image, MultipartFile imageFile) {
+    public Result add(Image image, MultipartFile imageFile) {
 
         @SuppressWarnings("unchecked")
         Map<String, String> uploadPhoto = this.imageUploadService.uploadImageFile(imageFile);
@@ -36,11 +40,11 @@ public class ImageManager implements ImageService {
         image.setPhotoPath(uploadPhoto.get("url"));
         this.imageDao.save(image);
 
-        return true;
+        return new SuccessResult("Fotoğraf eklendi.");
     }
 
     @Override
-    public List<Image> getAllByJobSeekerId(int id) {
-        return this.imageDao.getAllByJobSeekerId(id);
+    public DataResult<List<Image>> getAllByJobSeekerId(int id) {
+        return new SuccessDataResult<>(this.imageDao.getAllByJobSeekerId(id), "Id'ye göre fotoğraflar listelendi.");
     }
 }

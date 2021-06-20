@@ -1,10 +1,15 @@
 package io.kodlama.hrms.business.concretes;
 
 import io.kodlama.hrms.business.abstracts.SchoolInformationService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
+import io.kodlama.hrms.core.utilities.results.SuccessDataResult;
+import io.kodlama.hrms.core.utilities.results.SuccessResult;
 import io.kodlama.hrms.dataAccess.abstracts.SchoolInformationDao;
 import io.kodlama.hrms.dataAccess.abstracts.SchoolInformationDao;
 import io.kodlama.hrms.entities.concretes.SchoolInformation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.ScheduledTaskHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,13 +24,13 @@ public class SchoolInformationManager implements SchoolInformationService {
     }
 
     @Override
-    public List<SchoolInformation> getAll() {
-        return this.schoolInformationDao.findAll();
+    public DataResult<List<SchoolInformation>> getAll() {
+        return new SuccessDataResult<List<SchoolInformation>>(this.schoolInformationDao.findAll(), "Okul bilgileri başarıyla getirildi.");
     }
 
     @Override
-    public boolean add(SchoolInformation schoolInformation) {
+    public Result add(SchoolInformation schoolInformation) {
         this.schoolInformationDao.save(schoolInformation);
-        return true;
+        return new SuccessResult("Okul bilgisi başarıyla eklendi.");
     }
 }

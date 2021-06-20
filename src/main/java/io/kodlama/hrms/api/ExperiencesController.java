@@ -1,6 +1,8 @@
 package io.kodlama.hrms.api;
 
 import io.kodlama.hrms.business.abstracts.ExperienceService;
+import io.kodlama.hrms.core.utilities.results.DataResult;
+import io.kodlama.hrms.core.utilities.results.Result;
 import io.kodlama.hrms.entities.concretes.Experience;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +21,12 @@ public class ExperiencesController {
     }
 
     @PostMapping("/getAll")
-    public List<Experience> getAll() {
+    public DataResult<List<Experience>> getAll() {
         return this.experienceService.getAll();
     }
 
     @PostMapping("/add")
-    public boolean add(@RequestBody Experience experience) {
+    public Result add(@RequestBody Experience experience) {
         return this.experienceService.add(experience);
     }
 }
