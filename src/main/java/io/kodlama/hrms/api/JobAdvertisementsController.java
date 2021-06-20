@@ -11,10 +11,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/jobadvertisements")
-public class JobAdvertisementController {
+@CrossOrigin
+public class JobAdvertisementsController {
     private JobAdvertisementService jobAdvertisementService;
 
-    public JobAdvertisementController(JobAdvertisementService jobAdvertisementService) {
+    public JobAdvertisementsController(JobAdvertisementService jobAdvertisementService) {
         this.jobAdvertisementService = jobAdvertisementService;
     }
 
@@ -50,5 +51,11 @@ public class JobAdvertisementController {
     public boolean closeJobAdvertisment(@RequestParam int jobAdvertismentId)
     {
         return this.jobAdvertisementService.closeJobAdvertisment(jobAdvertismentId);
+    }
+
+    @GetMapping("/getAllByActiveAndJobPositionId")
+    public List<JobAdvertisement> getAllByActiveAndJobPositionId(@RequestParam int id)
+    {
+        return this.jobAdvertisementService.findAllByJobPositionId(id);
     }
 }

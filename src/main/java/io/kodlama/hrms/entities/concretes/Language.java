@@ -34,8 +34,4 @@ public class Language {
     @Max(value = 5)
     @Column(name = "language_level")
     private short languageLevel;
-
-    @JsonIgnore
-    @Column(name = "active")
-    private boolean active = true;
 }

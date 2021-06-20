@@ -22,30 +22,34 @@ public class JobAdvertisement {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "employer_id")//
+    @JoinColumn(name = "employer_id")
     private Employer employer;
 
     @ManyToOne
-    @JoinColumn(name = "jobposition_id")//
+    @JoinColumn(name = "jobposition_id")
     private JobPosition jobPosition;
 
     @ManyToOne
-    @JoinColumn(name = "city_id")//
+    @JoinColumn(name = "city_id")
     private City city;
 
-    @Column(name = "description")//
+    @ManyToOne
+    @JoinColumn(name = "way_of_working_id", nullable = false)
+    private WayOfWorking wayOfWorking;
+
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "minimum_salary")//
+    @Column(name = "minimum_salary")
     private double minimumSalary;
 
-    @Column(name = "maximum_salary")//
+    @Column(name = "maximum_salary")
     private double maximumSalary;
 
-    @Column(name = "number_of_people_to_be_hired")//
+    @Column(name = "number_of_people_to_be_hired")
     private short numberOfPeopleToBeHired;
 
-    @Column(name = "application_deadline")//
+    @Column(name = "application_deadline")
     private LocalDate applicationDeadline;
 
     @Column(name = "created_at")
@@ -56,4 +60,10 @@ public class JobAdvertisement {
 
     @Column(name = "active")
     private boolean active = true;
+
+    @Column(name = "remote")
+    private boolean remote = false;
+
+    @Column(name = "hrms_auth")
+    private boolean hrms_auth = false;
 }

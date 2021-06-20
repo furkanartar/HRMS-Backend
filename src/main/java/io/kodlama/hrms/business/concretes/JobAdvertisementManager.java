@@ -48,6 +48,11 @@ public class JobAdvertisementManager implements JobAdvertisementService {
     }
 
     @Override
+    public List<JobAdvertisement> findAllByJobPositionId(int id) {
+        return this.jobAdvertisementDao.findAllByJobPositionId(id);
+    }
+
+    @Override
     public boolean closeJobAdvertisment(int jobAdvertismentId) {
 
         var jobAdvertisement = this.jobAdvertisementDao.findById(jobAdvertismentId);

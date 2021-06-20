@@ -14,6 +14,7 @@ public interface JobAdvertisementService {
     List<ActiveJobAdvertisementsDto> getAllByActive();
     List<ActiveJobAdvertisementsOrderByCreatedAt> getAllByActiveAndOrderByCreatedAt();
     List<ActiveJobAdvertisementsByCompanyDto> getAllByActiveAndEmployerId(int id);
+    List<JobAdvertisement> findAllByJobPositionId(int id);
 
     boolean closeJobAdvertisment(int jobAdvertismentId);
 }

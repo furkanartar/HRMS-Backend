@@ -3,20 +3,18 @@ package io.kodlama.hrms.api;
 import io.kodlama.hrms.business.abstracts.ExperienceService;
 import io.kodlama.hrms.entities.concretes.Experience;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/experiences")
-public class ExperienceController {
+@CrossOrigin
+public class ExperiencesController {
     private ExperienceService experienceService;
 
     @Autowired
-    public ExperienceController(ExperienceService experienceService) {
+    public ExperiencesController(ExperienceService experienceService) {
         this.experienceService = experienceService;
     }
 
